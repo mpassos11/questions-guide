@@ -10,14 +10,20 @@
     <hr>
     <h3>Questions list</h3>
 
-    <p>Nome: <%= nome %></p>
-    <p>Linguagem favorita: <%= lang %></p>
-    <p>Empresa: <%= empresa %></p>
+    <p>Name: <%= nome %></p>
+    <p>Favorite language: <%= lang %></p>
+    <p>Company: <%= empresa %></p>
 
     <% if (msg) { %>
-        <h3>Isso é uma mensagem de erro!</h3>
+        <h3>This is a error message!</h3>
     <% } else { %>
-        <h3>Nenhum erro!</h3>
+        <h3>No error!</h3>
     <% } %>
+
+    <% products.forEach((product) => { %>
+        <hr>
+        <h3><%= product.name %> </h3>
+        <h4><%= product.price %> </h4>
+    <% }); %> 
 </body>
 </html>

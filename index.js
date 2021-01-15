@@ -4,16 +4,44 @@ const app = express();
 // configure EJS view engine
 app.set('view engine', 'ejs');
 
-app.get("/:nome/:lang", (req, res) => {
-    var nome = req.params.nome;
+app.get("/:name/:lang", (req, res) => {
+    var name = req.params.name;
     var lang = req.params.lang;
-    var exibirMsg = false;
+    var showMsg = false;
+    var products = [
+        {
+            name: 'Doritos',
+            price: 3.14
+        },
+        {
+            name: 'Coca-Cola',
+            price: 5
+        },
+        {
+            name: 'Milk',
+            price: 1.45
+        },
+        {
+            name: 'Carne',
+            price: 15
+        },
+        {
+            name: 'RedBull',
+            price: 6
+        },
+        {
+            name: 'Nescau',
+            price: 4
+        }
+    ];
+
     res.render('index', {
-        nome: nome,
+        nome: name,
         lang: lang,
         empresa: "Guia do Programador",
-        msg: exibirMsg
+        msg: showMsg,
+        products: products
     });
 });
 
-app.listen(4000, () => { console.log('App rodando!'); });
+app.listen(4000, () => { console.log('App working!'); });
