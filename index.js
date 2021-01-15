@@ -4,6 +4,9 @@ const app = express();
 // configure EJS view engine
 app.set('view engine', 'ejs');
 
+// Configure static files in EJS
+app.use(express.static('public'));
+
 app.get("/:name/:lang", (req, res) => {
     var name = req.params.name;
     var lang = req.params.lang;
