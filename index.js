@@ -34,6 +34,12 @@ app.get('/question', (req, res) => {
 app.post('/question-save', (req, res) => {
     var title = req.body.title;
     var description = req.body.description;
+    questionModel.create({
+        title: title,
+        description: description
+    }).then(() => {
+        res.redirect('/');
+    });
 });
 
 app.listen(4000, () => { console.log('App working!'); });
