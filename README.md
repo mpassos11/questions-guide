@@ -21,3 +21,7 @@ Install the dependencies and start the server with nodemon.
 ```bash
 nodemon index.js
 ```
+# Author
+Matheus Passos
+
+www.linkedin.com/in/math-passos
