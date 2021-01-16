@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
 const questionModel = require('./database/Question');
+const answerModel = require('./database/Answer');
 const app = express();
 
 // Connection with database
@@ -48,6 +49,40 @@ app.post('/question-save', (req, res) => {
         description: description
     }).then(() => {
         res.redirect('/');
+    });
+});
+
+app.get('/answer/:id', (req, res) => {
+    var id = req.params.id;
+    questionModel.findOne({
+        where: {id: id}
+    }).then(question => {
+        if (question != undefined) {
+            answerModel.findAll({
+                where: {questionId: question.id},
+                order: [
+                    ['id', 'DESC']
+                ]
+            }).then(answers => {
+                res.render('answer', {
+                    question: question,
+                    answers: answers
+                });
+            });
+        } else {
+            res.redirect('/');
+        }
+    })
+});
+
+app.post('/answer', (req, res) => {
+    var body = req.body.body;
+    var questionId = req.body.questionId;
+    answerModel.create({
+        body: body,
+        questionId: questionId
+    }).then(() => {
+        res.redirect('/answer/' + questionId);
     });
 });
 
