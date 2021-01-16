@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 
 // configure EJS view engine
@@ -7,12 +8,23 @@ app.set('view engine', 'ejs');
 // Configure static files in EJS
 app.use(express.static('public'));
 
+// Capture and translate form data to JS
+app.use(bodyParser.urlencoded({extended: false}));
+
+// Configure to read JSON data
+app.use(bodyParser.json());
+
 app.get("/", (req, res) => {
     res.render('index');
 });
 
 app.get('/question', (req, res) => {
     res.render('question');
+});
+
+app.post('/question-save', (req, res) => {
+    var title = req.body.title;
+    var description = req.body.description;
 });
 
 app.listen(4000, () => { console.log('App working!'); });

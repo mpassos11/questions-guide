@@ -5,12 +5,12 @@
             <h3>Ask a question</h3>
         </div>
         <div class="card-body">
-            <form action="">
-                <label for="">Question title</label>
-                <input type="text" class="form-control">
+            <form action="/question-save" method="POST">
+                <label for="title">Question title</label>
+                <input type="text" class="form-control" name="title" id="title">
                 <br>
-                <label for="">Question description</label>
-                <textarea class="form-control"></textarea>
+                <label for="description">Question description</label>
+                <textarea class="form-control" name="description" id="description"></textarea>
                 <br>
                 <button class="btn btn-primary">To Ask</button>
             </form>
